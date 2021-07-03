@@ -15,7 +15,7 @@
     "bs-platform": "^9.0.2"
   },
   "dependencies": {
-    "kafka-node": "^2.6.1"
+    "kafka-node": "^5.0.0"
   },
   "files": [
     "README.md",

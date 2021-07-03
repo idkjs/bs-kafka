@@ -55,7 +55,7 @@ module Client = {
   [@bs.new]
   external make5 :
     (string, string, zkOptions, noAckBatchOptions, sslOptions) => t =
-    "Client";
+    "KafkaClient";
 
   /** construct a new zookeper/kafka client. arguments:
 
@@ -75,7 +75,7 @@ module Client = {
   [@bs.module "kafka-node"]
   [@bs.new]
   external make4 : (string, string, zkOptions, noAckBatchOptions) => t =
-    "Client";
+    "KafkaClient";
 
   /** construct a new zookeper/kafka client. arguments:
 
@@ -89,7 +89,7 @@ module Client = {
     */
   [@bs.module "kafka-node"]
   [@bs.new]
-  external make3 : (string, string, zkOptions) => t = "Client";
+  external make3 : (string, string, zkOptions) => t = "KafkaClient";
 
   /** construct a new zookeper/kafka client. arguments:
 
@@ -101,7 +101,7 @@ module Client = {
     */
   [@bs.module "kafka-node"]
   [@bs.new]
-  external make : (string, string) => t = "Client";
+  external make : (string, string) => t = "KafkaClient";
 
   /** close a client. arguments:
 
@@ -174,7 +174,7 @@ module Producer = {
   type sendCallback = (sendError, sendResultInner) => unit;
 
   /** Send messages to kafka */ [@bs.send] [@bs.send]
-  external send : (t, array(ProduceRequest.t), sendCallback) => unit = "";
+  external send : (t, array(ProduceRequest.t), sendCallback) => unit = "send";
   /* TODO do createTopics method */
 };
 
@@ -272,7 +272,7 @@ module Consumer = {
       ]
     ) =>
     unit =
-    "";
+    "on";
 };
 /* KafkaClient */
 /** Provides the deriving abstract type `t` */
@@ -321,7 +321,7 @@ module Offset = {
   type fetchCallback;
 
   /** fetch the available offset of a specific topic-partition */
-  [@bs.send] external fetch : (t, array(OffsetRequest.t), fetchCallback) => unit = "";
+  [@bs.send] external fetch : (t, array(OffsetRequest.t), fetchCallback) => unit = "fetch";
 
   /** the type of the callback you supply to commit TODO define */
   type commitCallback;
@@ -334,14 +334,14 @@ module Offset = {
    2: completion callback */
   [@bs.send]
   external commit :
-    (t, string, array(OffsetCommitRequest.t), commitCallback) => unit = "";
+    (t, string, array(OffsetCommitRequest.t), commitCallback) => unit = "commit";
 
   /** register event handlers */
   [@bs.send]
   external on :
     (t, [@bs.string] [ | `ready(unit => unit) | `connect(unit => unit)]) =>
     unit =
-    "";
+    "on";
 
   /* TODO fetchCommits */
   /* TODO fetchLatestOffsets */
