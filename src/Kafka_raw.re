@@ -256,7 +256,7 @@ module Consumer = {
    throw an exception. to get a buffer, make sure you use encoding='buffer'
    in your consumer */
   let bufferValue: message => Node.buffer =
-    message => message |> value |> Kafka_util_instanceof.bufferGetExn;
+    message => valueGet(message) |> Kafka_util_instanceof.bufferGetExn;
 
   /* event handler */
   type messageHandler = message => unit;

@@ -25,3 +25,5 @@ lib/bs
 .merlin
 .bsb.lock.*.sw?
 node_modules
+.bsb.lock
+*.bs.js
